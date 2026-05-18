@@ -50,7 +50,7 @@
             
             <?php if ($subcategoriaSelecionada && isset($modelos[$subcategoriaSelecionada])): ?>
                 <label for="modelos">Modelos:</label>
-                <select name="modelos" id="modelos">
+                <select name="modelo" id="modelo" onchange="this.form.submit()">
                     <option value="">Selecione...</option>
                     <?php foreach ($modelos [$subcategoriaSelecionada] as $modelo): ?>
                         <option value="<?= $modelo ?>"><?= $modelo ?></option>
@@ -62,16 +62,16 @@
         <?php 
         if($modeloSelecionado && isset($veiculos[$subcategoriaSelecionada])){
             foreach ($veiculos[$subcategoriaSelecionada] as $carro){
-                if ($carro["modelo"] === $modeloSelecionado){
+                if ($carro["modelo"] === $modeloSelecionado && $carro["categoria"] === $categoriaSelecionada){
                     ?>
                         <div class="info-veiculo">
                             <h3>Infomações do Veículo</h3>
                             <p><strong>Categoria:</strong> <?=$categorias[$carro["categoria"]]?> </p>
                             <p><strong>Marca:</strong> <?=$subcategoriaSelecionada?> </p>
-                            <p><strong>Modelo:</strong> <?=[$carro["modelo"]]?> </p>
-                            <p><strong>Ano:</strong> <?= [$carro["ano"]]?> </p>
+                            <p><strong>Modelo:</strong> <?=$carro["modelo"]?> </p>
+                            <p><strong>Ano:</strong> <?= $carro["ano"]?> </p>
                             <p><strong>Preço:</strong> R$ <?= number_format($carro["preco"], 2, ",",".") ?> </p>
-                            <p><strong>Cor:</strong> <?=[$carro["cor"]]?> </p>
+                            <p><strong>Cor:</strong> <?=$carro["cor"]?> </p>
                         </div>
                         <?php
                 }
